@@ -2,15 +2,17 @@
 <html>
 {{> headers/header-main }}
 <body>
-{{> navigation/navigation-main }}
+{{> navigation/navigation-nt}}
 {{#if error}}
     <br/>
     <h4>{{error.msg}}</h4>
     <br/>
 {{/if}}
 {{{body}}}
+<div id="root">
+</div>
 {{> footers/footer-main }}
 </body>
-{{> jsincludes/js-main}}
+{{> jsincludes/js-nt}}
 {{> jsincludes/js-popovers-tooltips}}
 </html>

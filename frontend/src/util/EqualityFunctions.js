@@ -1,4 +1,8 @@
-export default function isSamePatient(item1, item2) {
-    return (item1._id === item2._id);
+export default function isSameNote(item1, item2) {
+    return (item1.id === item2.id);
+}
+
+export function isSameNoteById(item1, item2Id) {
+    return (item1.id === item2Id);
 }
 

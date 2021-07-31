@@ -13,4 +13,4 @@ class UUID {
 
 let uuid = new UUID();
 
-export default uuid;
+module.exports = uuid;

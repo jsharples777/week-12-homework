@@ -1,80 +1,69 @@
 const express = require('express');
-const passport = require('passport');
 const request = require('request');
-const Account = require('../models/account');
 const router = express.Router();
-const auth = require('./auth');
+const debug = require('debug')('routes');
+const ds = require("../db/DataSource");
 
 /* GET home page. */
-router.get('/', auth.ensureAuthenticated, function(req, res, next) {
-    res.render('index', { user: req.user });
+router.get('/', function(req, res, next) {
+    debug(req.method + ' ' + req.url);
+    res.render('index');
 });
-
-router.get("/register",function(req,res) {
-    res.render("register",{})
-});
-
-router.post("/register",function(req,res) {
-    console.log("Starting route POST /register");
-    console.log(req.body.username);
-    console.log(req.body.password);
-    Account.register(new Account({username: req.body.username}),
-        req.body.password,
-        function(err, account) {
-            if (err) {
-                console.log("Error - failed to register");
-                return res.render("register", {error: err.message});
-            }
-            console.log("Registered");
-
-            passport.authenticate("local") (req, res, function() {
-                req.session.save(function (err) {
-                    if (err) {
-                        return next(err);
-                    }
-                    res.redirect("/");
-                });
-            });
-        });
-});
-
-router.get("/login", function (req, res){
-    res.render("login",{user: req.user, layout: "login"});
-});
-
-router.post("/login",passport.authenticate("local"),function(req,res) {
-    res.redirect("/");
-})
-
-router.get("/logout", function (req,res) {
-    req.logout();
-    res.redirect("/");
-})
 
 router.get("/ping", function(req,res) {
+    debug(req.method + ' ' + req.url);
     res.status(200).send("pong!");
 })
 
 
 router.get("/test", (req, res) => {
-    console.log("url: " + req.url);
+    debug(req.method + ' ' + req.url);
     res.send("Hello World");
 });
 
-/* handle request for current weather from Open Weather API */
-router.post("/current", (req, res) => {
-    console.log("url: " + req.url);
-    console.log("body: " + req.body);
-    let newURL = process.env.CURRENT_WEATHER_URL + "?q=" + req.body.q + "&appid=" + process.env.API_KEY + "&units=metric";
-    console.log("new URL is: " + newURL);
-    request(newURL, function (error, response, body) {
-        console.error('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        console.log('body:', body);
-        res.status(response.statusCode);
-        res.json(body);
-    });
+/*
+Notes APIs
+ */
+router.get("/notes", (req, res) => {
+    debug(req.method + ' ' + req.url);
+    res.render('notes',{layout: "notes"});
 });
+
+router.get("/api/notes", (req, res) => {
+    debug(req.method + ' ' + req.url);
+    // send back JSON data
+    let savedData = ds.getItems();
+    res.json(savedData);
+});
+
+router.post("/api/notes", (req,res) => {
+    debug(req.method + ' ' + req.url);
+    debug(req.body);
+    let {title,note} = req.body;
+    let id = req.body.id;
+    let noteObj = {
+        title:title,
+        note:note
+    };
+    if (id) noteObj["id"] = id;
+    debug(noteObj);
+    // save the note attached and return it back to the client with the new ID
+    let savedData = ds.updateItem(noteObj);
+    res.json(savedData);
+});
+
+
+router.delete("/api/notes/:id", (req,res) => {
+    debug(req.method + ' ' + req.url);
+    // delete the note with the id
+    let id = req.params.id;
+    debug(id);
+    if (id) {
+        ds.deleteItem(id);
+    }
+    res.json({id:id,result:true});
+});
+
 
 
 module.exports = router;
