@@ -8,8 +8,8 @@ class App extends React.Component {
 
     constructor() {
         super();
-        logger.setOn();
-        logger.setLevel(10);
+        logger.setOff();
+        logger.setLevel(0);
         this.state = {
             notes: [],
             selectedNote: null,
