@@ -18,7 +18,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
     _this = _React$Component.call(this) || this;
     logger.setOn();
-    logger.setLevel(1000);
+    logger.setLevel(10);
     _this.state = {
       notes: [],
       selectedNote: null,

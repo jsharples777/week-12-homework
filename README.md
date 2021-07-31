@@ -14,7 +14,7 @@
 
 
 # Project Description
-This small web application allows the user to create/update/delete and view simple notes (title and content) that are stored persistently on a webserver.
+This small [web application](https://express-note-taker-jps.herokuapp.com/) allows the user to create/update/delete and view simple notes (title and content) that are stored persistently on a webserver.
 
 # Installation Instructions
 
