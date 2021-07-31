@@ -5,7 +5,6 @@
 - [Installation Instructions](#installation-instructions)
 - [Usage](#usage)
 - [Screenshot](#screenshot)
-- [Walkthrough Videos](#walkthrough-video)
 - [How To Contribute](#how-to-contribute)
 - [Testing Instructions](#testing-instructions)
 - [Technology](#technology)
