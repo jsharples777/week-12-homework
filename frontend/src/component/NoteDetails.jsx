@@ -30,15 +30,20 @@ export default class NoteDetails extends React.Component {
 
         if (note  && (note.title != null)) {
             return (
-                <div id={uiConfig.detailsId}>
-                    <input id={uiConfig.noteIdElId} type={"hidden"} value={note.id}></input>
-                    <input id={uiConfig.titleElId} type={"text"}
-                           className={"note-title"}
-                           placeholder={"Note Title"} maxLength={"28"} value={note.title} onChange={this.changeTitleHandler}/>
-                    <textarea id={uiConfig.contentElId} className={"note-textarea"} placeholder={"Note Text"}
-                              value={note.note} onChange={this.changeNoteHandler}></textarea>
-                    <button type="button" className={"btn btn-primary"} onClick={saveHandler}>Save <i
-                        className="fas fa-save text-white"></i></button>
+                <div className="mt-2" id={uiConfig.detailsId}>
+                    <form>
+                        <input id={uiConfig.noteIdElId} type={"hidden"} value={note.id}></input>
+                        <div className="form-group">
+                            <input id={uiConfig.titleElId} type={"text"}
+                                className={"form-control-lg"}
+                                placeholder={"Note Title"} maxLength={"28"} value={note.title} onChange={this.changeTitleHandler}/>
+                        </div>
+                        <div className="form-group">
+                            <textarea id={uiConfig.contentElId} className={"form-control"} placeholder={"Note Text"}
+                                value={note.note} rows="5" onChange={this.changeNoteHandler}></textarea>
+                        </div>
+                         <button type="button" className={"btn btn-primary"} onClick={saveHandler}>Save <i className="fas fa-save text-white"></i></button>
+                    </form>
                 </div>
             );
         } else {

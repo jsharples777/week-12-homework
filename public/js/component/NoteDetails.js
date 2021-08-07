@@ -47,32 +47,38 @@ var NoteDetails = /*#__PURE__*/function (_React$Component) {
 
     if (note && note.title != null) {
       return /*#__PURE__*/React.createElement("div", {
+        className: "mt-2",
         id: uiConfig.detailsId
-      }, /*#__PURE__*/React.createElement("input", {
+      }, /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("input", {
         id: uiConfig.noteIdElId,
         type: "hidden",
         value: note.id
-      }), /*#__PURE__*/React.createElement("input", {
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/React.createElement("input", {
         id: uiConfig.titleElId,
         type: "text",
-        className: "note-title",
+        className: "form-control-lg",
         placeholder: "Note Title",
         maxLength: "28",
         value: note.title,
         onChange: this.changeTitleHandler
-      }), /*#__PURE__*/React.createElement("textarea", {
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/React.createElement("textarea", {
         id: uiConfig.contentElId,
-        className: "note-textarea",
+        className: "form-control",
         placeholder: "Note Text",
         value: note.note,
+        rows: "5",
         onChange: this.changeNoteHandler
-      }), /*#__PURE__*/React.createElement("button", {
+      })), /*#__PURE__*/React.createElement("button", {
         type: "button",
         className: "btn btn-primary",
         onClick: saveHandler
       }, "Save ", /*#__PURE__*/React.createElement("i", {
         className: "fas fa-save text-white"
-      })));
+      }))));
     } else {
       return /*#__PURE__*/React.createElement("div", null);
     }
