@@ -49,7 +49,11 @@ Use a command line interface (CLI) such as terminal (or in windows command) and 
 7. [Bootstrap](https://getbootstrap.com/)
 8. [Typescript](https://www.typescriptlang.org/)
 9. [Babel](https://babeljs.io/)
-
+10. [React](https://www.npmjs.com/package/react)
+11. [Bootstrap](https://getbootstrap.com/)
+12. [DotENV](https://www.npmjs.com/package/dotenv)
+13. [Git-Crypt](https://github.com/AGWA/git-crypt)
+14. [Express](https://www.npmjs.com/package/express)
 
 # Questions
 
